@@ -1,0 +1,11 @@
+grid:
+  cellSize: 10
+  width: 40
+  height: 40
+
+gameConfig:
+  maxCellNumber: 200
+  coloniesCount: 24
+  cellsCountToBornNew: 3
+  minSpaceBetweenCells: 3
+  neighboursCellRadius: 8
