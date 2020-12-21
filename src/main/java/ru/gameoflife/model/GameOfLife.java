@@ -32,7 +32,7 @@ public class GameOfLife {
     }
 
     public void next() {
-        //TODO new generation
+        generation.nextGeneration();
         generation.incrementGenerationNum();
     }
 

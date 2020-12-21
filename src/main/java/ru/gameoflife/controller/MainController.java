@@ -31,6 +31,9 @@ public class MainController {
     public Label lblMinSpaceBetweenCells;
     public Label lblNeighRadius;
     public Label lblCellCountToBorn;
+    public Label lblAliveCells;
+    public Label lblDyingCells;
+    public Label lblBornCells;
 
     private GameOfLife gameOfLife;
 
@@ -89,8 +92,9 @@ public class MainController {
     }
 
     private void addAlivePropertyListener(int rowIdx, int colIdx, Pane cellPane) {
-        BooleanProperty aliveProperty = gameOfLife.getGrid().getCell(rowIdx, colIdx).aliveProperty();
+        BooleanProperty aliveProperty = gameOfLife.getGrid().getCell(rowIdx, colIdx).getAliveProperty();
         aliveProperty.addListener(((observable, oldValue, newValue) -> setAliveStyle(cellPane, newValue)));
+        lblAliveCells.textProperty().bind(gameOfLife.getGeneration().aliveCellsCountProperty().asString());
     }
 
     private void setAliveStyle(Pane cellPane, boolean isAlive) {
@@ -100,7 +104,6 @@ public class MainController {
         } else {
             styleClass.remove(ALIVE_STYLE_CLASS);
         }
-
     }
 
     private void addCellPaneStyle(Pane cellPane) {
@@ -129,6 +132,8 @@ public class MainController {
     }
 
     public void restartGame() {
+        gridPane.getChildren().clear();
+        initGridPane();
         gameOfLife.reset();
         pauseToggleButton.setSelected(true);
     }

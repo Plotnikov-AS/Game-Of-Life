@@ -85,6 +85,28 @@
                        <Label text="Cell count to born new: " />
                        <Label fx:id="lblCellCountToBorn" />
                    </HBox>
+                  <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
+                  <HBox>
+                     <children>
+                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
+                        <Label text="Alive cells:" />
+                        <Label fx:id="lblAliveCells" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
+                        <Label text="Dying cells:" />
+                        <Label fx:id="lblDyingCells" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
+                        <Label text="Born cells:" />
+                        <Label fx:id="lblBornCells" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

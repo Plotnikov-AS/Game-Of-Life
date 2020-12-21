@@ -16,5 +16,11 @@ public class GameConfig {
     @JsonProperty
     private Integer neighboursCellRadius;
     @JsonProperty
+    private Integer maxNeighbours;
+    @JsonProperty
+    private Integer minNeighbours;
+    @JsonProperty
     private Integer cellsCountToBornNew;
+    @JsonProperty
+    private Integer minNeighboursToBornColony;
 }

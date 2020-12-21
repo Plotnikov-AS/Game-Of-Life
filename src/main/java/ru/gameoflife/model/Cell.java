@@ -1,23 +1,54 @@
 package ru.gameoflife.model;
 
 import javafx.beans.property.*;
+import lombok.*;
 
+@Builder
+@Getter
 public class Cell {
+    private final int rowIdx;
+    private final int colIdx;
+    @Setter
+    private String cellStyleClass;
     private final BooleanProperty aliveProperty = new SimpleBooleanProperty();
+    private final BooleanProperty dyingProperty = new SimpleBooleanProperty();
+    private final BooleanProperty bornProperty = new SimpleBooleanProperty();
+    private final BooleanProperty deadProperty = new SimpleBooleanProperty();
+
 
     public boolean isAlive() {
-        return aliveProperty().get();
+        return getAliveProperty().get();
     }
 
     public void setAlive(boolean isAlive) {
-        aliveProperty().set(isAlive);
+        getAliveProperty().set(isAlive);
     }
 
-    public void toggleAlive() {
-        setAlive(!isAlive());
+    public boolean isDying() {
+        return dyingProperty.get();
     }
 
-    public BooleanProperty aliveProperty() {
-        return aliveProperty;
+    public void setDying(boolean isDying) {
+        getDyingProperty().set(isDying);
+    }
+
+    public boolean isBorn() {
+        return bornProperty.get();
+    }
+
+    public void setBorn(boolean isBorn) {
+        getBornProperty().set(isBorn);
+    }
+
+    public boolean isDead() {
+        return deadProperty.get();
+    }
+
+    public void setDead(boolean isDead) {
+        getDeadProperty().set(isDead);
+    }
+
+    public boolean isNotDead() {
+        return isAlive() || isBorn() || isDying();
     }
 }
