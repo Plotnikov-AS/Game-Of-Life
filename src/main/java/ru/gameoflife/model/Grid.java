@@ -32,10 +32,12 @@ public class Grid {
         Cell[][] cells = new Cell[gridHeight][gridWidth];
         for (int rowIdx = 0; rowIdx < gridHeight; rowIdx++) {
             for (int colIdx = 0; colIdx < gridWidth; colIdx++) {
-                cells[rowIdx][colIdx] = Cell.builder()
+                Cell cell = Cell.builder()
                         .rowIdx(rowIdx)
                         .colIdx(colIdx)
                         .build();
+                cell.setDead(true);
+                cells[rowIdx][colIdx] = cell;
             }
         }
         return cells;
@@ -87,7 +89,7 @@ public class Grid {
                 if (colony.contains(cell)) {
                     continue;
                 }
-                if (cell.isNotDead()) {
+                if (cell.isAlive() || cell.isDying()) {
                     countOfAliveNeighs++;
                 }
             }

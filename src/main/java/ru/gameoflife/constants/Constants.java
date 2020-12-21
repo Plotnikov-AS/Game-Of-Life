@@ -16,7 +16,6 @@ public interface Constants {
     int COLONIES_COUNT = getConfig().getGameConfig().getColoniesCount();
     int MAX_CELLS_NUMBER = getConfig().getGameConfig().getMaxCellNumber();
     int CELLS_IN_COLONY = MAX_CELLS_NUMBER / COLONIES_COUNT;
-    int RANDOM_MAX_CELLS_IN_COLONY = nextInt(CELLS_IN_COLONY / 2, CELLS_IN_COLONY * 3);
     int DISTANCE_BETWEEN_COLONIES = getConfig().getGameConfig().getMinSpaceBetweenCells();
     int MIN_NEIGHBOURS_TO_BORN_COLONY = getConfig().getGameConfig().getMinNeighboursToBornColony();
     int NEIGHBOURS_TO_BORN = getConfig().getGameConfig().getCellsCountToBornNew();

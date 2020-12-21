@@ -43,6 +43,12 @@ public class MainController {
         initConfigLabels();
     }
 
+    private void initGameStatisticLabels() {
+        lblAliveCells.textProperty().bind(gameOfLife.getGeneration().aliveCellsCountProperty().asString());
+        lblDyingCells.textProperty().bind(gameOfLife.getGeneration().dyingCellsCountProperty().asString());
+        lblBornCells.textProperty().bind(gameOfLife.getGeneration().bornCellsCountProperty().asString());
+    }
+
     private void initConfigLabels() {
         lblCellSize.setText(getConfig().getGridConfig().getCellSize().toString());
         lblRows.setText(getConfig().getGridConfig().getHeight().toString());
@@ -87,14 +93,45 @@ public class MainController {
         Pane cellPane = new Pane();
         addCellPaneStyle(cellPane);
         addAlivePropertyListener(rowIdx, colIdx, cellPane);
+        addBornPropertyListener(rowIdx, colIdx, cellPane);
+        addDyingPropertyListener(rowIdx, colIdx, cellPane);
         setAliveStyle(cellPane, gameOfLife.getGrid().getCell(rowIdx, colIdx).isAlive());
         gridPane.add(cellPane, colIdx, rowIdx);
+    }
+
+    private void addDyingPropertyListener(int rowIdx, int colIdx, Pane cellPane) {
+        BooleanProperty dyingProperty = gameOfLife.getGrid().getCell(rowIdx, colIdx).getDyingProperty();
+        dyingProperty.addListener((observable, oldValue, newValue) -> setDyingStyle(cellPane, newValue));
+    }
+
+    private void setDyingStyle(Pane cellPane, Boolean isDying) {
+        ObservableList<String> styleClass = cellPane.getStyleClass();
+        if (isDying) {
+            styleClass.remove(ALIVE_STYLE_CLASS);
+            styleClass.add("dying");
+        } else {
+            styleClass.remove("dying");
+        }
+    }
+
+    private void addBornPropertyListener(int rowIdx, int colIdx, Pane cellPane) {
+        BooleanProperty bornProperty = gameOfLife.getGrid().getCell(rowIdx, colIdx).getBornProperty();
+        bornProperty.addListener((observable, oldValue, newValue) -> setBornStyle(cellPane, newValue));
+    }
+
+    private void setBornStyle(Pane cellPane, boolean isBorn) {
+        ObservableList<String> styleClass = cellPane.getStyleClass();
+        if (isBorn) {
+            styleClass.remove(ALIVE_STYLE_CLASS);
+            styleClass.add("born");
+        } else {
+            styleClass.remove("born");
+        }
     }
 
     private void addAlivePropertyListener(int rowIdx, int colIdx, Pane cellPane) {
         BooleanProperty aliveProperty = gameOfLife.getGrid().getCell(rowIdx, colIdx).getAliveProperty();
         aliveProperty.addListener(((observable, oldValue, newValue) -> setAliveStyle(cellPane, newValue)));
-        lblAliveCells.textProperty().bind(gameOfLife.getGeneration().aliveCellsCountProperty().asString());
     }
 
     private void setAliveStyle(Pane cellPane, boolean isAlive) {
@@ -121,6 +158,7 @@ public class MainController {
         this.gameOfLife = gameOfLife;
         setGenerationNumberLabel();
         initGridPane();
+        initGameStatisticLabels();
     }
 
     public void startGame() {

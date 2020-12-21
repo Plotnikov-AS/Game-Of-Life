@@ -8,8 +8,6 @@ import lombok.*;
 public class Cell {
     private final int rowIdx;
     private final int colIdx;
-    @Setter
-    private String cellStyleClass;
     private final BooleanProperty aliveProperty = new SimpleBooleanProperty();
     private final BooleanProperty dyingProperty = new SimpleBooleanProperty();
     private final BooleanProperty bornProperty = new SimpleBooleanProperty();
@@ -46,9 +44,5 @@ public class Cell {
 
     public void setDead(boolean isDead) {
         getDeadProperty().set(isDead);
-    }
-
-    public boolean isNotDead() {
-        return isAlive() || isBorn() || isDying();
     }
 }
