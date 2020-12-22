@@ -2,6 +2,7 @@ package ru.gameoflife.controller;
 
 import javafx.beans.property.*;
 import javafx.collections.*;
+import javafx.event.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import ru.gameoflife.model.Cell;
@@ -10,10 +11,12 @@ import ru.gameoflife.model.*;
 import static java.util.Objects.*;
 import static javafx.scene.input.MouseEvent.*;
 import static javafx.scene.layout.GridPane.*;
+import static ru.gameoflife.builder.ViewBuilder.*;
 import static ru.gameoflife.config.Configuration.*;
+import static ru.gameoflife.constants.Constants.*;
 import static ru.gameoflife.constants.Constants.Style.*;
 
-public class MainController {
+public class MainController implements Controller{
 
 
     public ToggleButton slowToggleButton;
@@ -36,6 +39,8 @@ public class MainController {
     public Label lblAliveCells;
     public Label lblDyingCells;
     public Label lblBornCells;
+    public Button btnSave;
+    public Button btnLoad;
 
     private GameOfLife gameOfLife;
 
@@ -165,5 +170,13 @@ public class MainController {
 
     public void fastestToggleButtonAction() {
         gameOfLife.setSpeed(Speed.FASTEST);
+    }
+
+    public void showSaveGameWindow() {
+        createView(SAVE_VIEW_PATH, SAVE_GAME_WINDOW_NAME, 300, 150);
+    }
+
+    public void loadGame(ActionEvent actionEvent) {
+
     }
 }

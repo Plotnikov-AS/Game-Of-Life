@@ -7,11 +7,18 @@ import static ru.gameoflife.random.RandomExtensions.*;
 
 public interface Constants {
     String APP_NAME = "Game of Life";
+    String SAVE_GAME_WINDOW_NAME = "Save game";
+    String ERROR_VIEW_WINDOW_NAME = "Error";
     String CONFIG_PATH = "src/main/resources/сonfig.yml";
     String VIEW_PATH = "/view/view.fxml";
+    String SAVE_VIEW_PATH = "/view/saveView.fxml";
+    String ERROR_VIEW_PATH = "/view/errorView.fxml";
+    String PATH_TO_SAVE_GAME = "saved/";
 
     String ROW = "row";
     String COLUMN = "column";
+    String SUCCESS = "Success";
+    String FAILED = "Failed";
 
     int COLONIES_COUNT = getConfig().getGameConfig().getColoniesCount();
     int MAX_CELLS_NUMBER = getConfig().getGameConfig().getMaxCellNumber();
@@ -27,6 +34,7 @@ public interface Constants {
     interface ErrorMessages {
         String CELL_NOT_EXIST_ON_COORD = "Cell not exist on coordinates row: %s, col: %s";
         String ROUND_TOO_BIG_ERROR = "Round is too big!%nCell coordinates: row %s, col %s;%nRound offset: %s";
+        String EMPTY_SAVE_NAME = "Save name is empty. Please enter save name";
     }
 
     interface Style {

@@ -3,113 +3,174 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.gameoflife.controller.MainController">
-  <padding>
-    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-  </padding>
-  <children>
-    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <children>
-        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-        <ToggleButton fx:id="playToggleButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#startGame" prefHeight="24.0" prefWidth="62.0" styleClass="button" text="Play" />
-        <ToggleButton fx:id="pauseToggleButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#pauseGame" prefHeight="24.0" prefWidth="71.0" styleClass="button" text="Pause" />
-        <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#restartGame" prefHeight="24.0" prefWidth="70.0" text="Reset" />
-        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-        <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="381.0" spacing="10.0">
-          <children>
-            <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="52.0" text="Speed" />
-            <ToggleButton fx:id="slowToggleButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#slowToggleButtonAction" prefHeight="24.0" prefWidth="62.0" styleClass="button" text="Slow" />
-            <ToggleButton fx:id="mediumToggleButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#mediumToggleButtonAction" prefHeight="24.0" prefWidth="80.0" styleClass="button" text="Medium" />
-            <ToggleButton fx:id="fastToggleButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#fastToggleButtonAction" prefHeight="24.0" prefWidth="59.0" styleClass="button" text="Fast" />
-            <ToggleButton fx:id="fastestToggleButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#fastestToggleButtonAction" prefHeight="24.0" prefWidth="88.0" styleClass="button" text="Fastest" />
-          </children>
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            styleClass="background" stylesheets="@style.css" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.gameoflife.controller.MainController">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    <children>
+        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+              spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0"
+                           prefWidth="6.0"/>
+                <ToggleButton fx:id="playToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                              mnemonicParsing="false" onAction="#startGame" prefHeight="24.0" prefWidth="62.0"
+                              styleClass="button" text="Play"/>
+                <ToggleButton fx:id="pauseToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                              mnemonicParsing="false" onAction="#pauseGame" prefHeight="24.0" prefWidth="71.0"
+                              styleClass="button" text="Pause"/>
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#restartGame"
+                        prefHeight="24.0" prefWidth="70.0" text="Reset"/>
+                <Button fx:id="btnSave" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false"
+                        onAction="#showSaveGameWindow" prefHeight="24.0" prefWidth="70.0" text="Save"/>
+                <Button fx:id="btnLoad" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false"
+                        onAction="#loadGame" prefHeight="24.0" prefWidth="70.0" text="Load"/>
+                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0"
+                           prefWidth="6.0"/>
+                <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0"
+                      prefWidth="381.0" spacing="10.0">
+                    <children>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="14.0" prefWidth="52.0"
+                               text="Speed"/>
+                        <ToggleButton fx:id="slowToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                                      mnemonicParsing="false" onAction="#slowToggleButtonAction" prefHeight="24.0"
+                                      prefWidth="62.0" styleClass="button" text="Slow"/>
+                        <ToggleButton fx:id="mediumToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                                      mnemonicParsing="false" onAction="#mediumToggleButtonAction" prefHeight="24.0"
+                                      prefWidth="80.0" styleClass="button" text="Medium"/>
+                        <ToggleButton fx:id="fastToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                                      mnemonicParsing="false" onAction="#fastToggleButtonAction" prefHeight="24.0"
+                                      prefWidth="59.0" styleClass="button" text="Fast"/>
+                        <ToggleButton fx:id="fastestToggleButton" maxHeight="-Infinity" maxWidth="-Infinity"
+                                      mnemonicParsing="false" onAction="#fastestToggleButtonAction" prefHeight="24.0"
+                                      prefWidth="88.0" styleClass="button" text="Fastest"/>
+                    </children>
+                </HBox>
+                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0"
+                           prefWidth="6.0"/>
+                <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="103.0"
+                       text="Generation"/>
+                <Label fx:id="generationNumberLabel" alignment="CENTER_RIGHT" contentDisplay="TEXT_ONLY"
+                       maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="99.0"/>
+                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0"
+                           prefWidth="6.0"/>
+            </children>
         </HBox>
-        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-        <Label maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="103.0" text="Generation" />
-        <Label fx:id="generationNumberLabel" alignment="CENTER_RIGHT" contentDisplay="TEXT_ONLY" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0" prefWidth="99.0" />
-        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-      </children>
-    </HBox>
-      <HBox layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
-         <children>
-          <GridPane fx:id="gridPane" alignment="CENTER_LEFT" hgap="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" vgap="1.0">
-               <columnConstraints>
-                  <ColumnConstraints />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints />
-               </rowConstraints></GridPane>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-               <children>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Game config" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Cell size: " />
-                       <Label fx:id="lblCellSize" layoutX="93.0" layoutY="10.0" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Rows: " />
-                       <Label fx:id="lblRows" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Columns: " />
-                       <Label fx:id="lblColumns" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Number of colonies: " />
-                       <Label fx:id="lblNumOfColonies" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Max number of cells: " />
-                       <Label fx:id="lblMaxNumOfCells" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Min space between cells: " />
-                       <Label fx:id="lblMinSpaceBetweenCells" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Neighbour radius: " />
-                       <Label fx:id="lblNeighRadius" />
-                   </HBox>
-                   <HBox>
-                       <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                       <Label text="Cell count to born new: " />
-                       <Label fx:id="lblCellCountToBorn" />
-                   </HBox>
-                  <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
-                  <HBox>
-                     <children>
-                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                        <Label text="Alive cells:" />
-                        <Label fx:id="lblAliveCells" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                        <Label text="Dying cells:" />
-                        <Label fx:id="lblDyingCells" />
-                     </children>
-                  </HBox>
-                  <HBox>
-                     <children>
-                        <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0" prefWidth="6.0" />
-                        <Label text="Born cells:" />
-                        <Label fx:id="lblBornCells" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-  </children>
+        <HBox layoutX="10.0" layoutY="45.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+              minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+            <children>
+                <GridPane fx:id="gridPane" alignment="CENTER_LEFT" hgap="1.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                          minHeight="-Infinity" minWidth="-Infinity" vgap="1.0">
+                    <columnConstraints>
+                        <ColumnConstraints/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints/>
+                    </rowConstraints>
+                </GridPane>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                    <children>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Game config"/>
+                        </HBox>
+                        <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                   minHeight="-Infinity" minWidth="-Infinity"/>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Cell size: "/>
+                            <Label fx:id="lblCellSize" layoutX="93.0" layoutY="10.0"/>
+                        </HBox>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Rows: "/>
+                            <Label fx:id="lblRows"/>
+                        </HBox>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Columns: "/>
+                            <Label fx:id="lblColumns"/>
+                        </HBox>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Number of colonies: "/>
+                            <Label fx:id="lblNumOfColonies"/>
+                        </HBox>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Max number of cells: "/>
+                            <Label fx:id="lblMaxNumOfCells"/>
+                        </HBox>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Min space between cells: "/>
+                            <Label fx:id="lblMinSpaceBetweenCells"/>
+                        </HBox>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Neighbour radius: "/>
+                            <Label fx:id="lblNeighRadius"/>
+                        </HBox>
+                        <HBox>
+                            <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                       prefHeight="24.0" prefWidth="6.0"/>
+                            <Label text="Cell count to born new: "/>
+                            <Label fx:id="lblCellCountToBorn"/>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                           prefHeight="24.0" prefWidth="6.0"/>
+                                <Label/>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                           prefHeight="24.0" prefWidth="6.0"/>
+                                <Label text="Game statistic"/>
+                            </children>
+                        </HBox>
+                        <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                   minHeight="-Infinity" minWidth="-Infinity"/>
+                        <HBox>
+                            <children>
+                                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                           prefHeight="24.0" prefWidth="6.0"/>
+                                <Label text="Alive cells:"/>
+                                <Label fx:id="lblAliveCells"/>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                           prefHeight="24.0" prefWidth="6.0"/>
+                                <Label text="Dying cells:"/>
+                                <Label fx:id="lblDyingCells"/>
+                            </children>
+                        </HBox>
+                        <HBox>
+                            <children>
+                                <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL"
+                                           prefHeight="24.0" prefWidth="6.0"/>
+                                <Label text="Born cells:"/>
+                                <Label fx:id="lblBornCells"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
 </AnchorPane>

@@ -6,10 +6,12 @@ import javafx.event.*;
 import javafx.util.*;
 import lombok.*;
 
+import java.io.*;
+
 import static java.util.Objects.*;
 
 @Getter
-public class GameOfLife {
+public class GameOfLife implements Serializable {
     private final Grid grid;
     private final Generation generation;
     private final ObjectProperty<Speed> speed = new SimpleObjectProperty<>(Speed.SLOW);

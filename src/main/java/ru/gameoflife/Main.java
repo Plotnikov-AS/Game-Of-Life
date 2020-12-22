@@ -14,7 +14,7 @@ import static ru.gameoflife.constants.Constants.*;
 public class Main extends Application {
     private final GameOfLife gameOfLife;
     private Stage primaryStage;
-    private FXMLLoader fxmlLoader;
+    private FXMLLoader viewFxmlLoader;
     private Parent view;
 
     public Main() {
@@ -28,9 +28,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         initPrimaryStage(primaryStage);
-        initFxmlLoader();
+        initFxmlLoaders();
         initView();
-        initController();
+        initControllers();
         showScene();
     }
 
@@ -39,18 +39,18 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-    private void initController() {
-        MainController controller = fxmlLoader.getController();
+    private void initControllers() {
+        MainController controller = viewFxmlLoader.getController();
         controller.setGameOfLife(gameOfLife);
     }
 
     private void initView() throws IOException {
-        view = fxmlLoader.load();
+        view = viewFxmlLoader.load();
     }
 
-    private void initFxmlLoader() {
-        fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(Main.class.getResource(VIEW_PATH));
+    private void initFxmlLoaders() {
+        viewFxmlLoader = new FXMLLoader();
+        viewFxmlLoader.setLocation(Main.class.getResource(VIEW_PATH));
     }
 
     private void initPrimaryStage(Stage primaryStage) {
