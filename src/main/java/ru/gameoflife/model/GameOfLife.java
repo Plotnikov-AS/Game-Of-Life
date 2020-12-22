@@ -64,7 +64,6 @@ public class GameOfLife {
 
     public void reset() {
         pause();
-        grid.clear();
         generation.resetGeneration();
     }
 }

@@ -13,13 +13,16 @@ public class Cell {
     private final BooleanProperty bornProperty = new SimpleBooleanProperty();
     private final BooleanProperty deadProperty = new SimpleBooleanProperty();
 
-
     public boolean isAlive() {
         return getAliveProperty().get();
     }
 
     public void setAlive(boolean isAlive) {
         getAliveProperty().set(isAlive);
+    }
+
+    public void toggleAlive() {
+        getAliveProperty().set(!isAlive());
     }
 
     public boolean isDying() {
@@ -44,5 +47,12 @@ public class Cell {
 
     public void setDead(boolean isDead) {
         getDeadProperty().set(isDead);
+    }
+
+    public void resetToDefault() {
+        setDead(true);
+        setBorn(false);
+        setAlive(false);
+        setDying(false);
     }
 }

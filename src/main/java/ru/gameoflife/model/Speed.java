@@ -4,7 +4,7 @@ public enum Speed {
     SLOW(800),
     MEDIUM(200),
     FAST(80),
-    FASTEST(10);
+    FASTEST(20);
 
     private final double milliseconds;
 

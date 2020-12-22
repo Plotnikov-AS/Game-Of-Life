@@ -40,11 +40,3 @@
 .alive {
   -fx-background-color: #ffffff;
 }
-
-.born {
-  -fx-background-color: #3da042;
-}
-
-.dying {
-  -fx-background-color: #ffc000;
-}

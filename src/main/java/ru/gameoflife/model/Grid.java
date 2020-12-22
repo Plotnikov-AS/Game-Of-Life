@@ -20,7 +20,6 @@ public class Grid {
 
     private final Cell[][] cells;
 
-
     public Grid() {
         this.width = getConfig().getGridConfig().getWidth();
         this.height = getConfig().getGridConfig().getHeight();
@@ -55,41 +54,35 @@ public class Grid {
         return cell;
     }
 
-    public void clear() {
-        for (int rowIndex = 0; rowIndex < height; rowIndex++) {
-            for (int columnIndex = 0; columnIndex < width; columnIndex++) {
-                getCell(rowIndex, columnIndex).setAlive(false);
-            }
-        }
+    public int getCountOfAliveNeighsInRadius(Cell cell, int radius) {
+        return getCountOfAliveNeighsInRadius(cell, radius, emptyList());
     }
 
-    public int getCountOfAliveNeighsInRadius(int originRowIdx, int originColIdx, int radius) {
-        return getCountOfAliveNeighsInRadius(originRowIdx, originColIdx, radius, emptyList());
-    }
+    public int getCountOfAliveNeighsInRadius(Cell cell, int radius, List<Cell> colony) {
+        int cellRow = cell.getRowIdx();
+        int cellCol = cell.getColIdx();
+        int maxRow = getMaxCoordInRadius(cellRow, height, radius);
+        int minRow = getMinCoordInRadius(cellRow, radius);
+        int maxCol = getMaxCoordInRadius(cellCol, width, radius);
+        int minCol = getMinCoordInRadius(cellCol, radius);
 
-    public int getCountOfAliveNeighsInRadius(int originRowIdx, int originColIdx, int radius, List<Cell> colony) {
-        int maxNeighRowIdx = getMaxNeighCoordIdxInRadius(originRowIdx, height, radius);
-        int minNeighRowIdx = getMinNeighCoordIdxInRadius(originRowIdx, radius);
-        int maxNeighColIdx = getMaxNeighCoordIdxInRadius(originColIdx, width, radius);
-        int minNeighColIdx = getMinNeighCoordIdxInRadius(originColIdx, radius);
-
-        int firstRow = max((originRowIdx - radius), 0);
-        int firstCol = max((originColIdx - radius), 0);
-        if (firstRow < minNeighRowIdx || firstCol < minNeighColIdx) {
-            throw new IllegalArgumentException(format(ROUND_TOO_BIG_ERROR, originRowIdx, originColIdx, radius));
+        int firstRow = max((cellRow - radius), 0);
+        int firstCol = max((cellCol - radius), 0);
+        if (firstRow < minRow || firstCol < minCol) {
+            throw new IllegalArgumentException(format(ROUND_TOO_BIG_ERROR, cellRow, cellCol, radius));
         }
 
         int countOfAliveNeighs = 0;
-        for (int row = firstRow; row <= maxNeighRowIdx; row++) {
-            for (int col = firstCol; col <= maxNeighColIdx; col++) {
-                if (row == originRowIdx && col == originColIdx)
+        for (int row = firstRow; row <= maxRow; row++) {
+            for (int col = firstCol; col <= maxCol; col++) {
+                if (row == cellRow && col == cellCol)
                     continue;
 
-                Cell cell = getCell(row, col);
-                if (colony.contains(cell)) {
+                Cell neighbour = getCell(row, col);
+                if (colony.contains(neighbour)) {
                     continue;
                 }
-                if (cell.isAlive() || cell.isDying()) {
+                if (neighbour.isAlive() || neighbour.isDying()) {
                     countOfAliveNeighs++;
                 }
             }
@@ -98,7 +91,7 @@ public class Grid {
     }
 
 
-    private int getMaxNeighCoordIdxInRadius(int originIdx, int directionMaxVal, int radius) {
+    private int getMaxCoordInRadius(int originIdx, int directionMaxVal, int radius) {
         int maxVal = originIdx + radius;
         if (maxVal >= directionMaxVal) {
             maxVal = directionMaxVal - 1;
@@ -106,7 +99,7 @@ public class Grid {
         return maxVal;
     }
 
-    private int getMinNeighCoordIdxInRadius(int originIdx, int radius) {
+    private int getMinCoordInRadius(int originIdx, int radius) {
         int minVal = originIdx - radius;
         if (minVal < 0) {
             minVal = 0;

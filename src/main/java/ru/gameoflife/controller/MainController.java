@@ -4,9 +4,11 @@ import javafx.beans.property.*;
 import javafx.collections.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import ru.gameoflife.model.Cell;
 import ru.gameoflife.model.*;
 
 import static java.util.Objects.*;
+import static javafx.scene.input.MouseEvent.*;
 import static javafx.scene.layout.GridPane.*;
 import static ru.gameoflife.config.Configuration.*;
 import static ru.gameoflife.constants.Constants.Style.*;
@@ -58,7 +60,6 @@ public class MainController {
         lblMinSpaceBetweenCells.setText(getConfig().getGameConfig().getMinSpaceBetweenCells().toString());
         lblNeighRadius.setText(getConfig().getGameConfig().getNeighboursCellRadius().toString());
         lblCellCountToBorn.setText(getConfig().getGameConfig().getCellsCountToBornNew().toString());
-
     }
 
     private void setGenerationNumberLabel() {
@@ -93,40 +94,14 @@ public class MainController {
         Pane cellPane = new Pane();
         addCellPaneStyle(cellPane);
         addAlivePropertyListener(rowIdx, colIdx, cellPane);
-        addBornPropertyListener(rowIdx, colIdx, cellPane);
-        addDyingPropertyListener(rowIdx, colIdx, cellPane);
+        addClickEventHandler(rowIdx, colIdx, cellPane);
         setAliveStyle(cellPane, gameOfLife.getGrid().getCell(rowIdx, colIdx).isAlive());
         gridPane.add(cellPane, colIdx, rowIdx);
     }
 
-    private void addDyingPropertyListener(int rowIdx, int colIdx, Pane cellPane) {
-        BooleanProperty dyingProperty = gameOfLife.getGrid().getCell(rowIdx, colIdx).getDyingProperty();
-        dyingProperty.addListener((observable, oldValue, newValue) -> setDyingStyle(cellPane, newValue));
-    }
-
-    private void setDyingStyle(Pane cellPane, Boolean isDying) {
-        ObservableList<String> styleClass = cellPane.getStyleClass();
-        if (isDying) {
-            styleClass.remove(ALIVE_STYLE_CLASS);
-            styleClass.add("dying");
-        } else {
-            styleClass.remove("dying");
-        }
-    }
-
-    private void addBornPropertyListener(int rowIdx, int colIdx, Pane cellPane) {
-        BooleanProperty bornProperty = gameOfLife.getGrid().getCell(rowIdx, colIdx).getBornProperty();
-        bornProperty.addListener((observable, oldValue, newValue) -> setBornStyle(cellPane, newValue));
-    }
-
-    private void setBornStyle(Pane cellPane, boolean isBorn) {
-        ObservableList<String> styleClass = cellPane.getStyleClass();
-        if (isBorn) {
-            styleClass.remove(ALIVE_STYLE_CLASS);
-            styleClass.add("born");
-        } else {
-            styleClass.remove("born");
-        }
+    private void addClickEventHandler(int rowIdx, int colIdx, Pane cellPane) {
+        Cell cell = gameOfLife.getGrid().getCell(rowIdx, colIdx);
+        cellPane.addEventHandler(MOUSE_CLICKED, event -> cell.toggleAlive());
     }
 
     private void addAlivePropertyListener(int rowIdx, int colIdx, Pane cellPane) {
