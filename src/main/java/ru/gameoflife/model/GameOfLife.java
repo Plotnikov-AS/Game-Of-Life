@@ -3,10 +3,12 @@ package ru.gameoflife.model;
 import javafx.animation.*;
 import javafx.beans.property.*;
 import javafx.event.*;
+import javafx.scene.chart.*;
 import javafx.util.*;
 import lombok.*;
 
 import static java.util.Objects.*;
+import static ru.gameoflife.service.GraphDrawer.*;
 
 @Getter
 public class GameOfLife {
@@ -14,6 +16,8 @@ public class GameOfLife {
     private final Generation generation;
     private final ObjectProperty<Speed> speed = new SimpleObjectProperty<>(Speed.SLOW);
     private Timeline timeline;
+    @Setter
+    private LineChart<Long, Long> populationChart;
 
     public GameOfLife() {
         grid = new Grid();
@@ -42,6 +46,7 @@ public class GameOfLife {
     public void next() {
         generation.nextGeneration();
         generation.incrementGenerationNum();
+        nextStatePopulationChart(generation.getGenerationNum(), generation.getStatistic(), populationChart);
     }
 
     private void addSpeedPropertyListener() {

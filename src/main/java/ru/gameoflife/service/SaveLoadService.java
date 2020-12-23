@@ -43,12 +43,7 @@ public interface SaveLoadService {
                 }
             }
         });
-        Map<String, Long> gameStatistic = new HashMap<>();
-        gameStatistic.put(ALIVE, gameOfLife.getGeneration().getAliveCellsNum());
-        gameStatistic.put(BORN, gameOfLife.getGeneration().getBornCellsNum());
-        gameStatistic.put(DYING, gameOfLife.getGeneration().getDyingCellsNum());
-        gameStatistic.put(GENERATION_NUM, gameOfLife.getGeneration().getGenerationNum());
-
+        Map<String, Long> gameStatistic = gameOfLife.getGeneration().getStatistic();
         return new SaveGame(aliveCells, bornCells, dyingCells, configuration, gameStatistic);
     }
 

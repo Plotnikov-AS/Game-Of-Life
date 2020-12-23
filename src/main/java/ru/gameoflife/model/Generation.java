@@ -116,6 +116,15 @@ public class Generation {
         findCellsToBorn();
     }
 
+    public Map<String, Long> getStatistic() {
+        Map<String, Long> statistic = new HashMap<>();
+        statistic.put(ALIVE, getAliveCellsNum());
+        statistic.put(BORN, getBornCellsNum());
+        statistic.put(DYING, getDyingCellsNum());
+        statistic.put(GENERATION_NUM, getGenerationNum());
+        return statistic;
+    }
+
     public void killDyingCells() {
         List<Cell> dyingCells = cells.stream()
                 .filter(cell -> nonNull(cell) && cell.isDying())

@@ -12,3 +12,4 @@ gameConfig:
   minSpaceBetweenCells: 3
   minNeighboursToBornColony: 3
   neighboursCellRadius: 1
+  maxGraphLineLength: 150

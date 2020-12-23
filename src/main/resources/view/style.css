@@ -49,3 +49,12 @@
 .alive {
   -fx-background-color: #ffffff;
 }
+
+.chart-legend {
+  -fx-background-color: derive(#1d1d1d, 20%);
+}
+
+.chart-line-symbol {
+  -fx-background-radius: 0px;
+  -fx-padding: 0px;
+}

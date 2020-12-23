@@ -2,6 +2,7 @@ package ru.gameoflife.controller;
 
 import javafx.beans.property.*;
 import javafx.collections.*;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import ru.gameoflife.model.Cell;
@@ -40,6 +41,7 @@ public class MainController implements Controller{
     public Label lblBornCells;
     public Button btnSave;
     public Button btnLoad;
+    public LineChart<Long, Long> chartPopulation;
 
     private GameOfLife gameOfLife;
 
@@ -133,7 +135,7 @@ public class MainController implements Controller{
     public void setGameOfLife(GameOfLife gameOfLife) {
         if (isNull(gameOfLife))
             throw new IllegalArgumentException();
-
+        gameOfLife.setPopulationChart(chartPopulation);
         this.gameOfLife = gameOfLife;
         setGenerationNumberLabel();
         initGridPane();
@@ -153,6 +155,8 @@ public class MainController implements Controller{
         initGridPane();
         gameOfLife.reset();
         pauseToggleButton.setSelected(true);
+        chartPopulation.getData().clear();
+        chartPopulation.autosize();
     }
 
     public void slowToggleButtonAction() {

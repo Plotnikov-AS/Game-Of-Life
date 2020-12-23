@@ -25,4 +25,6 @@ public class GameConfig implements Serializable {
     private Integer cellsCountToBornNew;
     @JsonProperty
     private Integer minNeighboursToBornColony;
+    @JsonProperty
+    private Integer maxGraphLineLength;
 }

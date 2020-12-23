@@ -36,6 +36,7 @@ public interface Constants {
     int NEIGHBOURS_RADIUS = getConfig().getGameConfig().getNeighboursCellRadius();
     int GRID_HEIGHT = getConfig().getGridConfig().getHeight();
     int GRID_WIDTH = getConfig().getGridConfig().getWidth();
+    int MAX_GRAPH_LINE_LENGTH = getConfig().getGameConfig().getMaxGraphLineLength();
 
     interface ErrorMessages {
         String CELL_NOT_EXIST_ON_COORD = "Cell not exist on coordinates row: %s, col: %s";
@@ -46,6 +47,10 @@ public interface Constants {
     interface Style {
         String CELL_PANE_STYLE_CLASS = "cell-pane";
         String ALIVE_STYLE_CLASS = "alive";
+        String ALIVE_LINE_STYLE_CLASS = "-fx-stroke: #448000";
+        String BORN_LINE_STYLE_CLASS = "-fx-stroke: #a9a917";
+        String DYING_LINE_STYLE_CLASS = "-fx-stroke: #8c1515";
+
     }
 
     enum Direction {
