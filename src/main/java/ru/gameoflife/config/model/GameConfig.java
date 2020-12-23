@@ -3,10 +3,12 @@ package ru.gameoflife.config.model;
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
+import java.io.*;
+
 @NoArgsConstructor
 @Setter
 @Getter
-public class GameConfig {
+public class GameConfig implements Serializable {
     @JsonProperty
     private Integer maxCellNumber;
     @JsonProperty

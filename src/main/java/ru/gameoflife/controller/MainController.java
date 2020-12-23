@@ -2,7 +2,6 @@ package ru.gameoflife.controller;
 
 import javafx.beans.property.*;
 import javafx.collections.*;
-import javafx.event.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import ru.gameoflife.model.Cell;
@@ -173,10 +172,12 @@ public class MainController implements Controller{
     }
 
     public void showSaveGameWindow() {
-        createView(SAVE_VIEW_PATH, SAVE_GAME_WINDOW_NAME, 300, 150);
+        SaveController saveController = (SaveController) createView(SAVE_VIEW_PATH, SAVE_GAME_WINDOW_NAME, 300, 150);
+        saveController.setGameOfLife(gameOfLife);
     }
 
-    public void loadGame(ActionEvent actionEvent) {
-
+    public void showLoadGameWindow() {
+        LoadController loadController = (LoadController) createView(LOAD_VIEW_PATH, LOAD_GAME_WINDOW_NAME, 400, 150);
+        loadController.setMainController(this);
     }
 }

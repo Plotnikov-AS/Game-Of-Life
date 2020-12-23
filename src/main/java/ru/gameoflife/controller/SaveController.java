@@ -3,9 +3,7 @@ package ru.gameoflife.controller;
 import javafx.scene.control.*;
 import lombok.*;
 import ru.gameoflife.model.*;
-
-import java.io.*;
-import java.nio.file.*;
+import ru.gameoflife.service.*;
 
 import static java.util.Objects.*;
 import static ru.gameoflife.builder.ViewBuilder.*;
@@ -13,7 +11,7 @@ import static ru.gameoflife.constants.Constants.*;
 import static ru.gameoflife.constants.Constants.ErrorMessages.*;
 
 @Setter
-public class SaveViewController implements Controller {
+public class SaveController implements Controller {
     public Button btnSave;
     public TextField txtFileName;
     public Label lblSaveResult;
@@ -29,13 +27,7 @@ public class SaveViewController implements Controller {
                 return;
             }
             String path = PATH_TO_SAVE_GAME + txtFileName.getText() + ".save";
-            if (directoryIsNotExist(path)) {
-                Files.createDirectory(Paths.get(PATH_TO_SAVE_GAME));
-            }
-            FileOutputStream fileOut = new FileOutputStream(path);
-            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(gameOfLife);
-            objectOut.close();
+            SaveLoadService.saveGame(gameOfLife, path);
             lblSaveResult.setDisable(false);
             lblSaveResult.setText(SUCCESS);
         } catch (Exception e) {
@@ -45,13 +37,6 @@ public class SaveViewController implements Controller {
         }
     }
 
-    private boolean isDirectoryExist(String path) {
-        File directory = new File(path);
-        return directory.exists();
-    }
 
-    private boolean directoryIsNotExist(String path) {
-        return !isDirectoryExist(path);
-    }
 
 }

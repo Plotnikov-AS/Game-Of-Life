@@ -26,7 +26,7 @@
                 <Button fx:id="btnSave" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false"
                         onAction="#showSaveGameWindow" prefHeight="24.0" prefWidth="70.0" text="Save"/>
                 <Button fx:id="btnLoad" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false"
-                        onAction="#loadGame" prefHeight="24.0" prefWidth="70.0" text="Load"/>
+                        onAction="#showLoadGameWindow" prefHeight="24.0" prefWidth="70.0" text="Load"/>
                 <Separator maxHeight="-Infinity" maxWidth="-Infinity" orientation="VERTICAL" prefHeight="24.0"
                            prefWidth="6.0"/>
                 <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="24.0"

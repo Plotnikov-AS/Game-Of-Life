@@ -8,10 +8,12 @@ import static ru.gameoflife.random.RandomExtensions.*;
 public interface Constants {
     String APP_NAME = "Game of Life";
     String SAVE_GAME_WINDOW_NAME = "Save game";
+    String LOAD_GAME_WINDOW_NAME = "Load game";
     String ERROR_VIEW_WINDOW_NAME = "Error";
     String CONFIG_PATH = "src/main/resources/сonfig.yml";
-    String VIEW_PATH = "/view/view.fxml";
+    String MAIN_VIEW_PATH = "/view/view.fxml";
     String SAVE_VIEW_PATH = "/view/saveView.fxml";
+    String LOAD_VIEW_PATH = "/view/loadView.fxml";
     String ERROR_VIEW_PATH = "/view/errorView.fxml";
     String PATH_TO_SAVE_GAME = "saved/";
 
@@ -19,6 +21,10 @@ public interface Constants {
     String COLUMN = "column";
     String SUCCESS = "Success";
     String FAILED = "Failed";
+    String ALIVE = "alive";
+    String BORN = "born";
+    String DYING = "dying";
+    String GENERATION_NUM = "generationNum";
 
     int COLONIES_COUNT = getConfig().getGameConfig().getColoniesCount();
     int MAX_CELLS_NUMBER = getConfig().getGameConfig().getMaxCellNumber();

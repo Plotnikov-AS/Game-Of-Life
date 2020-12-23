@@ -13,7 +13,8 @@ import static ru.gameoflife.constants.Constants.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Configuration {
+@AllArgsConstructor
+public class Configuration implements Serializable {
     @Getter
     private static final Configuration config = init();
     @JsonProperty("grid")

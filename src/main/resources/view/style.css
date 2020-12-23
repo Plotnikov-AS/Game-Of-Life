@@ -21,6 +21,15 @@
   -fx-text-fill: #fff;
 }
 
+.choice-box {
+  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-text-fill: #fff;
+}
+
+.choice-box .context-menu {
+  -fx-background-color: derive(#1d1d1d, 20%);
+}
+
 .button:hover,
 .button:selected {
   -fx-background-color: #fff;

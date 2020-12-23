@@ -50,7 +50,7 @@ public class Main extends Application {
 
     private void initFxmlLoaders() {
         viewFxmlLoader = new FXMLLoader();
-        viewFxmlLoader.setLocation(Main.class.getResource(VIEW_PATH));
+        viewFxmlLoader.setLocation(Main.class.getResource(MAIN_VIEW_PATH));
     }
 
     private void initPrimaryStage(Stage primaryStage) {

@@ -3,10 +3,12 @@ package ru.gameoflife.config.model;
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
+import java.io.*;
+
 @NoArgsConstructor
 @Setter
 @Getter
-public class GridConfig {
+public class GridConfig implements Serializable {
     @JsonProperty
     private Integer cellSize;
     @JsonProperty

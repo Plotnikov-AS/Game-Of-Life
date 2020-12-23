@@ -1,6 +1,7 @@
 package ru.gameoflife.model;
 
 import javafx.beans.property.*;
+import lombok.*;
 
 import java.util.*;
 
@@ -18,11 +19,21 @@ public class Generation {
     private final ReadOnlyLongWrapper bornCellsCount = new ReadOnlyLongWrapper();
 
     private final Grid grid;
-    private final List<Cell> cells = new ArrayList<>();
+    @Getter
+    private List<Cell> cells = new ArrayList<>();
 
     public Generation(Grid grid) {
         this.grid = grid;
         bornFirstGeneration();
+    }
+
+    public Generation(Grid grid, List<Cell> cells, Map<String, Long> gameStatistic) {
+        this.grid = grid;
+        this.cells = cells;
+        setAliveCellsCount(gameStatistic.get(ALIVE));
+        setBornCellsCount(gameStatistic.get(BORN));
+        setDyingCellsCount(gameStatistic.get(DYING));
+        setGenerationNum(gameStatistic.get(GENERATION_NUM));
     }
 
     private void bornFirstGeneration() {
@@ -234,6 +245,22 @@ public class Generation {
 
     public void incrementGenerationNum() {
         generationNum.set(getGenerationNum() + 1);
+    }
+
+    private void setGenerationNum(Long generationNum) {
+        this.generationNum.set(generationNum);
+    }
+
+    private void setAliveCellsCount(Long aliveCellsCount) {
+        this.aliveCellsCount.set(aliveCellsCount);
+    }
+
+    private void setDyingCellsCount(Long dyingCellsCount) {
+        this.dyingCellsCount.set(dyingCellsCount);
+    }
+
+    private void setBornCellsCount(Long bornCellsCount) {
+        this.bornCellsCount.set(bornCellsCount);
     }
 
 }
